@@ -69,7 +69,7 @@ void decoder(int instruction, int opcode, int num)
             else
             {
                 std::cout << "SUB";
-                name_Reg(num, TYPE_4);
+                name_reg(num, TYPE_4);
             }
             break;
         
@@ -194,7 +194,228 @@ void decoder(int instruction, int opcode, int num)
             break;
 
         case 0x5:
-        
+            switch(opcode)
+            {
+                case 0x0:
+                    std::cout << "STR";
+                    break;
+                case 0x1:
+                    std::cout << "STRH";
+                    break;
+                case 0x2:
+                    std::cout << "STRB";
+                    break;
+                case 0x3:
+                    std::cout << "LDRSB";
+                    break;
+                case 0x4:
+                    std::cout << "LDR";
+                    break;
+                case 0x5:
+                    std::cout << "LDRH";
+                    break;
+                case 0x6:
+                    std::cout << "LDRB";
+                    break;
+                case 0x7:
+                    std::cout << "LDRSH";
+                    break;
+            }
+            break;
+    
+        case 0x6:
+            if(!opcode)
+            {
+                std::cout << "STR";
+                name_reg(num, TYPE_1_1);
+            }
+            else
+            {
+                std::cout << "LDR";
+                name_reg(num, TYPE_1_1);
+            }
+        break;
 
+        case 0x7:
+            if(!opcode)
+            {
+                std::cout << "STRB";
+                name_reg(num, TYPE_1_1);
+            }
+            else
+            {
+                std::cout << "LDRB";
+                name_reg(num, TYPE_1_1);
+            }
+        break;
+
+        case 0x8:
+            if(!opcode)
+            {
+                std::cout << "STRH";
+                name_reg(num, TYPE_1_1);
+            }
+            else
+            {
+                std::cout << "LDRH";
+                name_reg(num, TYPE_1_1);
+            }
+        break;
+
+        case 0x9:
+            if(!opcode)
+            {
+                std::cout << "STR";
+                name_reg(num, TYPE_4_2);
+            }
+            else
+            {
+                std::cout << "LDR";
+                name_reg(num, TYPE_4_2);
+            }
+        break;
+
+        case 0xA:
+            std::cout << "ADD";
+            if(!opcode)
+            {
+                name_reg(num, TYPE_4_1);
+            } 
+            else
+            {
+                name_reg(num, TYPE_4_2);
+            }
+        break;
+
+        case 0xB:
+            switch(opcode)
+            {
+                case 0x0:
+                    std::cout << "ADD sp,";
+                    imed = num & 0x7F;
+                    std::cout << imed << "\n";
+                break;
+
+                case 0x1:
+                    std::cout << "SUB sp,";
+                    imed = num & 0x7F;
+                    std::cout << imed << "\n";
+                break;
+
+                case 0x8:
+                    std::cout << "SXTH";
+                    name_reg(num, TYPE_5);
+                break;
+
+                case 0x9:
+                    std::cout << "SXTB";
+                    name_reg(num, TYPE_5);
+                break;
+
+                case 0xA:
+                    std::cout << "UTXH";
+                    name_reg(num, TYPE_5);
+                break;
+
+                case 0xB:
+                    std::cout << "UTXB";
+                    name_reg(num, TYPE_5);
+                break;
+
+                case 0x28:
+                    std::cout << "REV";
+                    name_reg(num, TYPE_5);
+                break;
+
+                case 0x29:
+                    std::cout << "REV16";
+                    name_reg(num, TYPE_5);
+                break;
+
+                case 0x2B:
+                    std::cout << "REVSH";
+                    name_reg(num, TYPE_5);
+                break;
+
+                case 0x2:
+                    std::cout << "PUSH";
+                    name_reg(num, TYPE_6_1);
+                break;
+
+                case 0x6:
+                    std::cout << "POP";
+                    name_reg(num, TYPE_6_1);
+                break;
+
+                case 0x14:
+                    std::cout << "SETEND LE";
+                break;
+
+                case 0x15:
+                    std::cout << "SETEND BE";
+                break;
+
+                case 0xC:
+                    std::cout << "CPSIE";
+                break;
+
+                case 0xF:
+                    std::cout << "BKPT";
+                    name_reg(num, TYPE_7);
+                break;
+
+                default:
+                    std::cout << "Instrução invalida\n";
+                break;
+            }
+            break;
+        
+        case 0xC:
+            if(!opcode)
+            {
+                std::cout << "STMIA";
+                name_reg(num, TYPE_6);
+            }
+            else
+            {
+                std::cout << "LDMIA";
+                name_reg(num, TYPE_6);
+            }
+        break;
+
+        case 0xD:
+            if(opcode == 0xF)
+            {
+                std::cout << "SWI";
+            }
+            else
+            {
+                std::cout << "B";
+                std::cout << dec_cond(num);
+            }
+
+            name_Reg(num, TYPE_7);
+        break;
+
+        case 0xE:
+            if(!opcode)
+            {
+                std::cout << "B";
+                name_reg(num, TYPE_8);
+            }
+            else
+            {
+                std::cout << "BLX";
+                name_reg(num, TYPE_9);
+            }
+        break;
+
+        case 0xF:
+            std::cout << "BL";
+            name_reg(num, TYPE_10);
+
+        default:
+            std::cout << "Instrução invalida\n";
+        break;
     }
 }
