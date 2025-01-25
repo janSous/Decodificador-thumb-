@@ -419,3 +419,97 @@ void decoder(int instruction, int opcode, int num)
         break;
     }
 }
+
+int opcode(int instruction, int num)
+{
+    int opcode = 0;
+    instruction = num >> 12;
+
+    switch(instruction)
+    {
+        case 0x0:
+            opcode = (num >> 11) & 0b1;
+        break;
+
+        case 0x1:
+            if(((num>>11) & 0b1) == 0)
+            {
+                opcode = 0;
+            }
+            else if((num >> 11 & 0b1) && (num >> 10) & 0b1)
+            {
+                opcode = ((num >> 9 & 0b111));
+            }
+            else
+            {
+                opcode = ((num >> 9 & 0b111));
+            }
+
+        break;
+
+        case 0x2:
+            opcode = (num >> 11) & 0b1;
+        break;
+
+        case 0x3:
+            opcode = (num >> 11) & 0b1;
+        break;
+
+        case 0x4:
+            if((num >> 11) & 0x1)
+            {
+                if(((num >>8) & 0x7) == 0x7)
+                    opcode = ((num>>7) & 0xF);
+                else 
+                    opcode = (num >> 6) & 0x1F;
+            }
+            else   
+                opcode = 0x1;
+        break;
+
+        case 0x5:
+            opcode = (num >> 9) & 0x3;
+        break;
+
+        case 0x6 ... 0xA:
+            opcode = (num >> 11) & 0x1;
+        break; 
+
+        //avaliar e testar depois
+        case 0xB:
+            //Verifica bits 11-8
+            if(((num >> 8) & 0xF) == 0)
+                opcode = (num >> 7 & 0x1);
+            //Verifica bits 10 e 9   
+            if(((num >> 9) & 0x3) == 0x1)
+                opcode = (num >> 6) & 0x3;
+            if(((num >> 9) & 0x3) == 0x2)
+                opcode = (num >> 11) & 0x1;
+            if(((num >> 9) & 0x3) == 0x3)
+            {
+                if(((num >> 5) & 0xF) == 0x2)
+                    opcode = (num>>3) & 0x1;
+                if(((num >> 5) & 0xF) == 0x3)
+                    opcode = (num>>4) & 0x1;
+            }
+        break;
+
+        case 0xC:
+            opcode = (num >> 11) & 0x1;
+        break;
+
+        case 0xD:
+            opcode = 0;
+        break;
+
+        case 0xE:
+            opcode = (num>>11) & 0x1;
+        break;
+
+        case 0xF:
+            opcode = (num>>11) & 0x1;
+        
+        default:
+            opcode = 0;   
+    }
+}
