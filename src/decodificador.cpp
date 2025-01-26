@@ -1,4 +1,4 @@
-#include "decodificador.h"
+#include "decodificador_reg.h"
 #include <iostream>
 void decoder(int instruction, int opcode, int num)
 {
@@ -394,7 +394,7 @@ void decoder(int instruction, int opcode, int num)
                 std::cout << dec_cond(num);
             }
 
-            nome_Reg(num, TYPE_7);
+            nome_reg(num, TYPE_7);
         break;
 
         case 0xE:

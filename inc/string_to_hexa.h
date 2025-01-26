@@ -6,16 +6,14 @@
 
 void validar(){
     
-int instruction = 0;
+int instruction;
 int opcode_num; 
-int option;
 int num; 
 char *hexa;
-int j = 0; 
-int count = 0; 
+int j; 
+int count; 
 int a; 
-int valido = 0; 
-
+int valido; 
 }
 
 
