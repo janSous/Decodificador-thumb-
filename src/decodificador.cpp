@@ -1,8 +1,7 @@
-#include "decodificador_reg.h"
+#include "decodificador.h"
 #include <iostream>
-void decoder(int instruction, int opcode, int num)
-{
-    instruction = num >> 12;
+void decoder(int opcode, int num){
+    int instruction = num >> 12;
     int reg = 0, imed = 0;
 
     switch(instruction)
@@ -391,7 +390,7 @@ void decoder(int instruction, int opcode, int num)
             else
             {
                 std::cout << "B";
-                std::cout << dec_cond(num);
+                decodificador_cond(num);
             }
 
             nome_reg(num, TYPE_7);
@@ -420,10 +419,10 @@ void decoder(int instruction, int opcode, int num)
     }
 }
 
-int opcode(int instruction, int num)
+int opcode(int num)
 {
     int opcode = 0;
-    instruction = num >> 12;
+    int instruction = num >> 12;
 
     switch(instruction)
     {
@@ -512,4 +511,6 @@ int opcode(int instruction, int num)
         default:
             opcode = 0;   
     }
+
+    return opcode;
 }

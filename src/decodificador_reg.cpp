@@ -2,84 +2,95 @@
 #include "decodificador_reg.h"
 using std::cout;
 
-
+//Função auxiliar
+void aux(int cont)
+{
+    if(cont != 0)
+        cout << ", ";
+}
 
 std::string decoder_reg(int reg)
 {
+    std::string s;
     switch(reg)
     {
         case 0:
-            cout << "R0";
+            s = "R0";
+
         break;
 
         case 1:
-            cout << "R1";
+            s = "R1";
         break;
 
         case 2:
-            cout << "R2";
+            s = "R2";
         break;
 
         case 3:
-            cout << "R3";
+            s = "R3";
         break;
 
         case 4:
-            cout << "R4";
+            s = "R4";
         break;
 
         case 5:
-            cout << "R5";
+            s = "R5";
         break;
         
         case 6:
-            cout << "R6";
+            s = "R6";
         break;
 
         case 7:
-            cout << "R7";
+            s = "R7";
         break;
 
         case 8:
-            cout << "R8";
+            s = "R8";
         break;
 
         case 9:
-            cout << "R9";
+            s = "R9";
         break;
 
         case 10:
-            cout << "R10";
+            s = "R10";
         break;
 
         case 11:
-            cout << "R11";
+            s = "R11";
         break;
 
         case 12:
-            cout << "R12";
+            s = "R12";
         break;
 
         case 13:
-            cout << "SP";
+            s = "SP";
         break;
 
         case 14:
-            cout << "LR";
+            s = "LR";
         break;
 
         case 15:
-            cout << "PC";
+            s = "PC";
         break;
     }
+
+    return s;
+
 }
 
-void nome_reg(int num, int type)
+void nome_reg(int num, int types)
 {
     int reg = 0;
     int imed = 0;
+    int cont = 0;
 
-    switch(type)
+    switch(types)
     {
         case TYPE_1: // Ld = #imediato << Lm| Ld = Lm >> #imediato
             reg = num & 0x7; //Bits 2-0(Ld)
@@ -148,7 +159,6 @@ void nome_reg(int num, int type)
 
         case TYPE_6_1: // PUSH|POP
             reg = num & 0x1FF; //Conj. de registradores + pc/lr (bits 8-0)
-            int cont = 0;
 
             if(reg != 0)
             {
@@ -218,10 +228,5 @@ void nome_reg(int num, int type)
     }
 }
 
-//Função auxiliar
-void aux(int cont)
-{
-    if(cont != 0)
-        cout << ", ";
-}
+
 
