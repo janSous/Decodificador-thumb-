@@ -95,48 +95,48 @@ void nome_reg(int num, int types)
         case TYPE_1: // Ld = #imediato << Lm| Ld = Lm >> #imediato
             reg = num & 0x7; //Bits 2-0(Ld)
             cout << decoder_reg(reg) << ", ";
-            reg = num & 0x38; //Pega os bits 5-3(Lm)
+            reg = ((num & 0x38) >> 3); //Pega os bits 5-3(Lm)
             cout << decoder_reg(reg) << ", ";
-            imed = num & 0x7C0; // Bits 10-6(immed5)
+            imed = ((num & 0x7C0) >> 6); // Bits 10-6(immed5)
             cout << '#' << imed;
         break;
 
         case TYPE_1_1: // Ld, [Lm, #immed]
             reg = num & 0x7; //Bits 2-0(Ld)
             cout << decoder_reg(reg) << ", ";
-            reg = num & 0x38; // Bits 5-3(Lm)
+            reg = ((num & 0x38) >> 3); // Bits 5-3(Lm)
             cout << "[ " << decoder_reg(reg);
-            imed = num & 0x7C0; //Bits 10-6(immed5)
+            imed = ((num & 0x7C0) >> 6); //Bits 10-6(immed5)
             cout << ", #" << imed << "]";
         break;
 
         case TYPE_2: // Ld, Lm, Ln
             reg = num & 0x7; //Ld(bits 2-0)
             cout << decoder_reg(reg) << ", ";
-            reg = num & 0x38; //Ln(bits 5-3)
+            reg = ((num & 0x38) >> 3); //Ln(bits 5-3)
             cout << decoder_reg(reg) << ", ";
-            reg = num & 0x1C0; // Lm(bits 8-5)
+            reg = ((num & 0x1C0) >> 6); // Lm(bits 8-6)
             cout << decoder_reg(reg);
         break;
 
         case TYPE_3: // Ld, Ln, immed
             reg = num & 0x7; //Ld(bits 2-0)
             cout << decoder_reg(reg) << ", ";
-            reg = num & 0x38;// Ln(bits 5-3)
+            reg = ((num & 0x38) >> 3);// Ln(bits 5-3)
             cout << decoder_reg(reg) << ", #";
-            imed = num & 0x1C0; // immed3(bits 8-6)
+            imed = ((num & 0x1C0) >> 6); // immed3(bits 8-6)
             cout << imed;
         break;
 
         case TYPE_4: // Ln, #immed/ Ld,#immed
-            reg = num & 0x700; // Ld/Ln(bits 10-8)
+            reg = ((num & 0x0700) >> 8); // Ld/Ln(bits 10-8)
             cout << decoder_reg(reg) << ", #";
             imed = num & 0xFF; // immed8(bits 7-0)
             cout << imed;
         break;
 
         case TYPE_4_1: //Ld, [pc, #immed*4]
-            reg = num & 0x700; //Ld(bits 10-8)
+            reg = ((num & 0x700) >> 8); //Ld(bits 10-8)
             cout << decoder_reg(reg) << ", [" << 
             decoder_reg(15) << ", #";
             imed = num & 0xFF; //immed8(bits 7-0)
@@ -144,7 +144,7 @@ void nome_reg(int num, int types)
         break;
 
         case TYPE_4_2: //Ld, [sp, #immed*4]
-            reg = num & 0x700; //Ld(bits 10-8)
+            reg = ((num & 0x700) >> 8); //Ld(bits 10-8)
             cout << decoder_reg(reg) << ", [" <<
             decoder_reg(14) << ", #";
             imed = num & 0xFF; //immed8(bits 7-0)
@@ -153,7 +153,7 @@ void nome_reg(int num, int types)
         case TYPE_5: // Ld|Ln|Hd & 7|Hn & 7, Lm|Ls|Hm & 7
             reg = num & 0x7; //Ld|Ln|Hd&7 (bits 2-0)
             cout << decoder_reg(reg) << ", ";
-            reg = num & 0x38; // Lm|Ls|Hm&7 (bits 5-3)
+            reg = ((num & 0x38) >> 3); // Lm|Ls|Hm&7 (bits 5-3)
             cout << decoder_reg(reg);
         break;
 
@@ -222,9 +222,6 @@ void nome_reg(int num, int types)
             imed = imed*2 + 4;
             cout << " #" << imed;
         break;
-
-
-
     }
 }
 

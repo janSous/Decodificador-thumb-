@@ -9,39 +9,39 @@ void decoder(int opcode, int num){
         case 0x0:
             if(!opcode)
             {
-                std::cout << "LSL";
+                std::cout << "LSL ";
                 nome_reg(num,TYPE_1);
             }
             else
             {
-                std::cout << "LSR";
+                std::cout << "LSR ";
                 nome_reg(num, TYPE_1);
             }
             break;
         case 0x1:
             if(opcode==0)
             {
-                std::cout << "ASR";
+                std::cout << "ASR ";
                 nome_reg(num,TYPE_1);
             }
             else if(opcode == 4)
             {
-                std::cout << "ADD";
+                std::cout << "ADD ";
                 nome_reg(num,TYPE_2);
             }
             else if(opcode == 5)
             {
-                std::cout << "SUB";
+                std::cout << "SUB ";
                 nome_reg(num,TYPE_2);
             }
             else if(opcode == 6)
             {
-                std::cout << "ADD";
+                std::cout << "ADD ";
                 nome_reg(num,TYPE_3);
             }
             else if(opcode == 7)
             {
-                std::cout << "SUB";
+                std::cout << "SUB ";
                 nome_reg(num,TYPE_3);
             }
             break;
@@ -49,12 +49,12 @@ void decoder(int opcode, int num){
         case 0x2:
             if(opcode == 0)
             {
-                std::cout << "MOV";
+                std::cout << "MOV ";
                 nome_reg(num, TYPE_4);
             }
             else
             {
-                std::cout << "CMP";
+                std::cout << "CMP ";
                 nome_reg(num, TYPE_4);
             }
             break;
@@ -62,12 +62,12 @@ void decoder(int opcode, int num){
         case 0x3:
             if(opcode == 0)
             {
-                std::cout << "ADD";
+                std::cout << "ADD ";
                 nome_reg(num, TYPE_4);
             }
             else
             {
-                std::cout << "SUB";
+                std::cout << "SUB ";
                 nome_reg(num, TYPE_4);
             }
             break;
@@ -76,117 +76,117 @@ void decoder(int opcode, int num){
             switch(opcode)
             {
                 case 0x0:
-                    std::cout << "AND";
+                    std::cout << "AND ";
                     nome_reg(num,TYPE_5);
                     break;
                 case 0x1:
-                    std::cout << "EOR";
+                    std::cout << "EOR ";
                     nome_reg(num,TYPE_5);
                     break;
                 case 0x2:
-                    std::cout << "LSL";
+                    std::cout << "LSL ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x3:
-                    std::cout << "LSR";
+                    std::cout << "LSR ";
                     nome_reg(num, TYPE_5);
                 case 0x4:
-                    std::cout << "ASR";
+                    std::cout << "ASR ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x5:
-                    std::cout << "ADC";
+                    std::cout << "ADC ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x6:
-                    std::cout << "SBC";
+                    std::cout << "SBC ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x7:
-                    std::cout << "ROR";
+                    std::cout << "ROR ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x8:
-                    std::cout << "TST";
+                    std::cout << "TST ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x9:
-                    std::cout << "NEG";
+                    std::cout << "NEG ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0xA:
-                    std::cout << "CMP";
+                    std::cout << "CMP ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0xB:
-                    std::cout << "CMN";
+                    std::cout << "CMN ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0xC:
-                    std::cout << "ORR";
+                    std::cout << "ORR ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0xD:
-                    std::cout << "MUL";
+                    std::cout << "MUL ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0xE:
-                    std::cout << "BIC";
+                    std::cout << "BIC ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0xF:
-                    std::cout << "MVN";
+                    std::cout << "MVN ";
                     nome_reg(num,TYPE_5);
                     break;
                 case 0x11:
-                    std::cout << "ADD";
+                    std::cout << "ADD ";
                     nome_reg(num,TYPE_5);
                     break;
                 case 0x12:
-                    std::cout << "ADD";
+                    std::cout << "ADD ";
                     nome_reg(num,TYPE_5);
                     break;
                 case 0x13:
-                    std::cout << "MOV";
+                    std::cout << "MOV ";
                     nome_reg(num,TYPE_5);
                 case 0x15:
-                    std::cout << "CMP";
+                    std::cout << "CMP ";
                     nome_reg(num,TYPE_5);
                     break;
                 case 0x16:
-                    std::cout << "CMP";
+                    std::cout << "CMP ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x17:
-                    std::cout << "CMP";
+                    std::cout << "CMP ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x18:
-                    std::cout << "CPY";
+                    std::cout << "CPY ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x19:
-                    std::cout << "MOV";
+                    std::cout << "MOV ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x1A:
-                    std::cout << "MOV";
+                    std::cout << "MOV ";
                     nome_reg(num, TYPE_5);
                     break;
                 case 0x1B:
-                    std::cout << "MOV";
+                    std::cout << "MOV ";
                     nome_reg(num,TYPE_5);
                     break;
                 case 0x1C:
-                    std::cout << "BX";
+                    std::cout << "BX ";
                     //implementar depois
                     break;
                 case 0x1E:
-                    std::cout << "BLX";
+                    std::cout << "BLX ";
                     //implementar
                     break;
                 case 0xFF:
-                    std::cout << "LDR";
+                    std::cout << "LDR ";
                     nome_reg(num, TYPE_4_1);
                     break;
             }
@@ -196,28 +196,28 @@ void decoder(int opcode, int num){
             switch(opcode)
             {
                 case 0x0:
-                    std::cout << "STR";
+                    std::cout << "STR ";
                     break;
                 case 0x1:
-                    std::cout << "STRH";
+                    std::cout << "STRH ";
                     break;
                 case 0x2:
-                    std::cout << "STRB";
+                    std::cout << "STRB ";
                     break;
                 case 0x3:
-                    std::cout << "LDRSB";
+                    std::cout << "LDRSB ";
                     break;
                 case 0x4:
-                    std::cout << "LDR";
+                    std::cout << "LDR ";
                     break;
                 case 0x5:
-                    std::cout << "LDRH";
+                    std::cout << "LDRH ";
                     break;
                 case 0x6:
-                    std::cout << "LDRB";
+                    std::cout << "LDRB ";
                     break;
                 case 0x7:
-                    std::cout << "LDRSH";
+                    std::cout << "LDRSH ";
                     break;
             }
             break;
@@ -225,12 +225,12 @@ void decoder(int opcode, int num){
         case 0x6:
             if(!opcode)
             {
-                std::cout << "STR";
+                std::cout << "STR ";
                 nome_reg(num, TYPE_1_1);
             }
             else
             {
-                std::cout << "LDR";
+                std::cout << "LDR ";
                 nome_reg(num, TYPE_1_1);
             }
         break;
@@ -238,12 +238,12 @@ void decoder(int opcode, int num){
         case 0x7:
             if(!opcode)
             {
-                std::cout << "STRB";
+                std::cout << "STRB ";
                 nome_reg(num, TYPE_1_1);
             }
             else
             {
-                std::cout << "LDRB";
+                std::cout << "LDRB ";
                 nome_reg(num, TYPE_1_1);
             }
         break;
@@ -251,12 +251,12 @@ void decoder(int opcode, int num){
         case 0x8:
             if(!opcode)
             {
-                std::cout << "STRH";
+                std::cout << "STRH ";
                 nome_reg(num, TYPE_1_1);
             }
             else
             {
-                std::cout << "LDRH";
+                std::cout << "LDRH ";
                 nome_reg(num, TYPE_1_1);
             }
         break;
@@ -264,18 +264,18 @@ void decoder(int opcode, int num){
         case 0x9:
             if(!opcode)
             {
-                std::cout << "STR";
+                std::cout << "STR ";
                 nome_reg(num, TYPE_4_2);
             }
             else
             {
-                std::cout << "LDR";
+                std::cout << "LDR ";
                 nome_reg(num, TYPE_4_2);
             }
         break;
 
         case 0xA:
-            std::cout << "ADD";
+            std::cout << "ADD ";
             if(!opcode)
             {
                 nome_reg(num, TYPE_4_1);
@@ -290,76 +290,76 @@ void decoder(int opcode, int num){
             switch(opcode)
             {
                 case 0x0:
-                    std::cout << "ADD sp,";
+                    std::cout << "ADD sp, ";
                     imed = num & 0x7F;
                     std::cout << imed << "\n";
                 break;
 
                 case 0x1:
-                    std::cout << "SUB sp,";
+                    std::cout << "SUB sp, ";
                     imed = num & 0x7F;
                     std::cout << imed << "\n";
                 break;
 
                 case 0x8:
-                    std::cout << "SXTH";
+                    std::cout << "SXTH ";
                     nome_reg(num, TYPE_5);
                 break;
 
                 case 0x9:
-                    std::cout << "SXTB";
+                    std::cout << "SXTB ";
                     nome_reg(num, TYPE_5);
                 break;
 
                 case 0xA:
-                    std::cout << "UTXH";
+                    std::cout << "UTXH ";
                     nome_reg(num, TYPE_5);
                 break;
 
                 case 0xB:
-                    std::cout << "UTXB";
+                    std::cout << "UTXB ";
                     nome_reg(num, TYPE_5);
                 break;
 
                 case 0x28:
-                    std::cout << "REV";
+                    std::cout << "REV ";
                     nome_reg(num, TYPE_5);
                 break;
 
                 case 0x29:
-                    std::cout << "REV16";
+                    std::cout << "REV16 ";
                     nome_reg(num, TYPE_5);
                 break;
 
                 case 0x2B:
-                    std::cout << "REVSH";
+                    std::cout << "REVSH ";
                     nome_reg(num, TYPE_5);
                 break;
 
                 case 0x2:
-                    std::cout << "PUSH";
+                    std::cout << "PUSH ";
                     nome_reg(num, TYPE_6_1);
                 break;
 
                 case 0x6:
-                    std::cout << "POP";
+                    std::cout << "POP ";
                     nome_reg(num, TYPE_6_1);
                 break;
 
                 case 0x14:
-                    std::cout << "SETEND LE";
+                    std::cout << "SETEND LE ";
                 break;
 
                 case 0x15:
-                    std::cout << "SETEND BE";
+                    std::cout << "SETEND BE ";
                 break;
 
                 case 0xC:
-                    std::cout << "CPSIE";
+                    std::cout << "CPSIE ";
                 break;
 
                 case 0xF:
-                    std::cout << "BKPT";
+                    std::cout << "BKPT ";
                     nome_reg(num, TYPE_7);
                 break;
 
@@ -372,12 +372,12 @@ void decoder(int opcode, int num){
         case 0xC:
             if(!opcode)
             {
-                std::cout << "STMIA";
+                std::cout << "STMIA ";
                 nome_reg(num, TYPE_6);
             }
             else
             {
-                std::cout << "LDMIA";
+                std::cout << "LDMIA ";
                 nome_reg(num, TYPE_6);
             }
         break;
@@ -385,11 +385,11 @@ void decoder(int opcode, int num){
         case 0xD:
             if(opcode == 0xF)
             {
-                std::cout << "SWI";
+                std::cout << "SWI ";
             }
             else
             {
-                std::cout << "B";
+                std::cout << "B ";
                 decodificador_cond(num);
             }
 
@@ -399,19 +399,20 @@ void decoder(int opcode, int num){
         case 0xE:
             if(!opcode)
             {
-                std::cout << "B";
+                std::cout << "B ";
                 nome_reg(num, TYPE_8);
             }
             else
             {
-                std::cout << "BLX";
+                std::cout << "BLX ";
                 nome_reg(num, TYPE_9);
             }
         break;
 
         case 0xF:
-            std::cout << "BL";
+            std::cout << "BL ";
             nome_reg(num, TYPE_10);
+            break;
 
         default:
             std::cout << "Instrução invalida\n";
