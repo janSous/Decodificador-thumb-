@@ -160,61 +160,91 @@ void nome_reg(int num, int types)
         case TYPE_6_1: // PUSH|POP
             reg = num & 0x1FF; //Conj. de registradores + pc/lr (bits 8-0)
 
-            if(reg != 0)
-            {
-                 cout << " {";
+             cout << " {";
 
             if(reg & 0x1 == 1)
+            {
                 cout << decoder_reg(0);
                 cont ++;
-            if(reg & 0x2 == 1)
+            }
+
+            if(((reg >> 1) & 0x1) == 0x1)
+            {
                 aux(cont);
                 cout << decoder_reg(1);
                 cont++;
-            if(reg & 0x4 == 1)
+            }
+
+            if(((reg >> 2) & 0x1) == 0x1)
+            {
                 aux(cont);
                 cout << decoder_reg(2);
                 cont++;
-            if(reg & 0x8 == 1)
+            }
+               
+            if(((reg >> 3) & 0x1) == 0x1)
+            {
                 aux(cont);
                 cout << decoder_reg(3);
                 cont++;
-            if(reg & 0x10 == 1)
+            }
+                
+            if(((reg >> 4) & 0x1) == 0x1)
+            {
                 aux(cont);
                 cout << decoder_reg(4);
                 cont++;
-            if(reg & 0x20 == 1)
+            }
+               
+            if(((reg >> 5) & 0x1) == 0x1)
+            {
                 aux(cont);
                 cout << decoder_reg(5);
                 cont++;
-            if(reg & 0x40 == 1)
+            }
+                
+            if(((reg >> 6) & 0x1) == 0x1)
+            {
                 aux(cont);
                 cout << decoder_reg(6);
                 cont++;
-            if(reg & 0x80 == 1)
+            }
+                
+            if(((reg >> 7) & 0x1) == 0x1)
+            {
                 aux(cont);
                 cout << decoder_reg(7);
                 cont++;
-            if(reg & 0x100 == 1)
-                aux(cont);
-                cout << decoder_reg(14);
-            if(reg & 0x100 == 0)
-                aux(cont);
-                cout << decoder_reg(15);
-            
-            cout << "}";
             }
+                
+            if(((reg >> 8) & 0x1) == 0x1)
+            {
+                if(((num >> 8) & 0x1) == 0x1)
+                {
+                    aux(cont);
+                    cout << decoder_reg(14);
+                }
+                else
+                {
+                    aux(cont);
+                    cout << decoder_reg(15);
+                }
+                
+            }
+                 
+            cout << "}";
         break;
 
         case TYPE_7: // BKPT #immed8
             imed = num & 0xFF; // immed8(bits 7-0)
-            cout << " #" << imed;
+            cout << " #" << imed*2 + 4;
         break;
         
         case TYPE_8: //B #adress
-            imed = num & 0x7F; //offset com sinal(10-0)
+            imed = num & 0x7FF; //offset com sinal(10-0)
             imed = imed*2 + 4;
             cout << " #" << imed;
+        break;
          // case TYPE_9:
 
         case TYPE_10: //BL #adress

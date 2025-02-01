@@ -6,7 +6,7 @@ using std::cout;
 
 void decodificador_cond(int num)
 {
-   int cond = num & 0xF00; // pega os bits 11-8 (cond)
+   int cond = ((num & 0xF00) >> 8); // pega os bits 11-8 (cond)
 
    switch(cond)
    {
@@ -67,9 +67,8 @@ void decodificador_cond(int num)
         case 0xE:
             cout << "Undefined";
         case 0xF:
-            cout << "SWI, ";
             int immed = num & 0x00FF;
-            cout << std::hex << immed;
+            cout << "#" << immed*2 + 4;
         break;
    }  
 }

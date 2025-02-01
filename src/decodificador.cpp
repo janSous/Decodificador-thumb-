@@ -357,6 +357,10 @@ void decoder(int opcode, int num){
                 case 0xC:
                     std::cout << "CPSIE ";
                 break;
+                
+                case 0xE:
+                    std::cout << "CPSID";
+                break;
 
                 case 0xF:
                     std::cout << "BKPT ";
@@ -383,17 +387,22 @@ void decoder(int opcode, int num){
         break;
 
         case 0xD:
-            if(opcode == 0xF)
+            if(opcode == 0xE)
+            {
+                std::cout << "Undefined Instruction";
+            }
+            else if(opcode == 0xF)
             {
                 std::cout << "SWI ";
+                decodificador_cond(num);
             }
             else
             {
-                std::cout << "B ";
+                std::cout << "B";
                 decodificador_cond(num);
+                nome_reg(num, TYPE_7);
             }
 
-            nome_reg(num, TYPE_7);
         break;
 
         case 0xE:
@@ -456,15 +465,22 @@ int opcode(int num)
         break;
 
         case 0x4:
-            if(!(num >> 11) & 0x1)
+            if(((num >> 11) & 0x1) == 0)
             {
-                if(((num >>8) & 0x7) == 0x7)
-                    opcode = ((num>>7) & 0xF);
-                else 
-                    opcode = (num >> 6) & 0x1F;
+                if(((num & 0xF00) >> 8) == 0x7)
+                {
+                    opcode = ((num & 0xF8) >> 7);
+                }
+                else if(((num & 0xF00) >> 8) < 0x7)
+                {
+                    opcode = ((num & 0xFC0) >> 6);
+                }
             }
-            else   
-                opcode = 0x1;
+            else
+            {
+                opcode = 0xFF;
+            }
+           
         break;
 
         case 0x5:
@@ -477,29 +493,45 @@ int opcode(int num)
 
         //avaliar e testar depois
         case 0xB:
-            //Verifica bits 11-8
-            if(((num >> 8) & 0xF) == 0)
-                opcode = (num >> 7 & 0x1);
-            //Verifica bits 10 e 9   
-            if(((num >> 9) & 0x3) == 0x1)
-                opcode = (num >> 6) & 0x3;
-            if(((num >> 9) & 0x3) == 0x2)
-                opcode = (num >> 11) & 0x1;
-            if(((num >> 9) & 0x3) == 0x3)
+
+            if(((num >> 8) & 0xF) == 0xE)
             {
-                if(((num >> 5) & 0xF) == 0x2)
-                    opcode = (num>>3) & 0x1;
-                if(((num >> 5) & 0xF) == 0x3)
-                    opcode = (num>>4) & 0x1;
+                opcode = 0xF;
             }
+            //Verifica bits 10-9
+            else if(((num >> 9) & 0x3) == 0x0)
+            {
+                opcode = ((num >> 7) & 0x1F);
+            }
+            else if(((num >> 9) & 0x3) == 0x1)
+            {
+                opcode = ((num >> 6) & 0x3F);
+            }
+            else if(((num >> 9) & 0x3) == 0x2)
+            {
+                opcode = ((num >> 9) & 0x7);
+            }
+            else
+            {
+                if(((num >> 5) & 0x1) == 0)
+                {
+                    opcode = ((num >> 2) & 0x1F);
+                }
+                else if(((num >> 5) & 0x1) == 1)
+                {
+                    opcode = ((num >> 4) & 0xF);
+                }
+            }
+            
         break;
+        
 
         case 0xC:
             opcode = (num >> 11) & 0x1;
         break;
 
         case 0xD:
-            opcode = 0;
+            opcode = ((num >> 8) & 0xF);
         break;
 
         case 0xE:
