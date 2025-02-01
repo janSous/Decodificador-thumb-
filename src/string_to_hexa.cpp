@@ -11,6 +11,7 @@ void validar() {
     int opcode_num;
     int choice;
 
+
 digite:
     
     std::string* hexa = new std::string;
@@ -31,9 +32,10 @@ digite:
     if (hexa->size() != 4) {
         valido = false;
         std::cout << "Número inválido. Digite outro número.\n";
-    } else {
-        for (char c : *hexa) {
-            if (!isxdigit(c)) {
+    } 
+    else{
+        for (char c : *hexa){
+            if (!isxdigit(c)){
                 valido = false;
                 break;
             }
@@ -49,13 +51,15 @@ digite:
             std::cin >> choice;
 
             
-            if (choice == 1) {
+            if (choice == 1){
                 goto digite;
             }
-        } else {
-            std::cout << "Erro: A string não contém um número hexadecimal válido.\n";
         }
-    } else {
+        else{
+            std::cout << "Erro: A string não contém um número hexadecimal válido.\n";
+            }
+    }   
+    else{
         std::cout << "Número inválido. Digite outro número.\n";
         system("clear");
         delete hexa;

@@ -9,10 +9,12 @@ ARQ =	string_to_hexa.o \
 		decodificador.o \
 		decodificador_cond.o \
 		decodificador_reg.o \
+		lerarq.o \
 		main.o
+		
 
 app: $(ARQ)
-	$(CC) obj/main.o obj/decodificador_reg.o obj/decodificador_cond.o obj/decodificador.o obj/string_to_hexa.o -o bin/app	 
+	$(CC) obj/main.o obj/decodificador_reg.o obj/decodificador_cond.o obj/decodificador.o obj/string_to_hexa.o obj/lerarq.o -o bin/app	 
 	
 main.o: src/main.cpp
 	$(CC) -o main.o -c $(INC) src/main.cpp -o obj/main.o
@@ -22,6 +24,9 @@ decodificador_reg.o: src/decodificador_reg.cpp
 
 decodificador_cond.o: src/decodificador_cond.cpp
 	$(CC) -o decodificador_cond.o -c $(INC) src/decodificador_cond.cpp -o obj/decodificador_cond.o
+
+lerarq.o: src/lerarq.cpp
+	$(CC) -o lerarq.o -c $(INC) src/lerarq.cpp -o obj/lerarq.o
 
 decodificador.o: src/decodificador.cpp
 	$(CC) -o decodificador.o -c $(INC) src/decodificador.cpp -c -o obj/decodificador.o
