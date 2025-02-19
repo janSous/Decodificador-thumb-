@@ -245,7 +245,14 @@ void nome_reg(int num, int types)
             imed = imed*2 + 4;
             cout << " #" << imed;
         break;
-         // case TYPE_9:
+         case TYPE_9: //BlX #adress32
+            imed = ((num & 0x7FE) >> 1); //Imed10(bits 11-1)
+            imed = imed*4;
+            imed = (imed << 12);
+            imed = imed+4;
+            imed = imed & ~0x3; //((instruction+4+(poff<<12)+offset*4) &~ 3)
+            cout << " #" << imed;
+        break;
 
         case TYPE_10: //BL #adress
             imed = num & 0x7FF; //offset com ou sem sinal (bits 11-0)
