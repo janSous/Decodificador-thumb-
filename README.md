@@ -4,7 +4,7 @@ Esse repositorio contem um projeto que pega um programa em c++ e lê um arquivo 
 
 
 
-#Devs:
+# Devs:
 
 ## Davi Alves Medeiros: davimedeiros@alu.ufc.br
 
