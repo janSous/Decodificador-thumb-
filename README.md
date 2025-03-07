@@ -6,6 +6,6 @@ Esse repositorio contem um projeto que pega um programa em c++ e lê um arquivo 
 
 #Devs:
 
-#Davi Alves Medeiros: davimedeiros@alu.ufc.br
+## Davi Alves Medeiros: davimedeiros@alu.ufc.br
 
-#Janinson de Sousa Guimarães Junior: janisonj121@gmail.com
+## Janinson de Sousa Guimarães Junior: janisonj121@gmail.com
